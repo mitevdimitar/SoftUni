@@ -1,2 +1,2 @@
 # SoftUni
-Labs and Exercises in the JS Modules
+Submissions for all Labs and Exercises in the JS Modules
