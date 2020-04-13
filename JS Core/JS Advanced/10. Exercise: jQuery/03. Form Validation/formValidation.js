@@ -1,0 +1,55 @@
+function validate() {
+	$('#company').on('click', openCompanyInfo);
+	$('#submit').on('click', validateForm);
+
+	function validateForm(e) {
+		let username = $('#username');
+		let email = $('#email');
+		let password = $('#password');
+		let confirmPassword = $('#confirm-password');
+		let companyNumber = $('#companyNumber');
+		let isValid = true;
+
+		e.preventDefault();
+
+		if (!/^[a-zA-Z0-9]{3,20}$/g.test(username.val())) {
+			username.css('border-color', 'red');
+			isValid = false;
+		}
+
+		if (!/^(.+)?@(.+)?\.(.+)?$/g.test(email.val())) {
+			email.css('border-color', 'red');
+			isValid = false;
+		}
+
+		if (!/^\w{5,15}$/g.test(password.val())) {
+			password.css('border-color', 'red');
+			isValid = false;
+		}
+
+		if (!/^\w{5,15}$/g.test(confirmPassword.val()) || password.val() !== confirmPassword.val()) {
+			confirmPassword.css('border-color', 'red');
+			password.css('border-color', 'red');
+			isValid = false;
+		}
+
+		if ($('#companyInfo').css('display') === 'block' && (companyNumber.val() < 1000 || companyNumber.val() > 9999)) {
+			companyNumber.css('border-color', 'red');
+			isValid = false;
+		}
+
+		if (isValid) {
+			$('#valid').css('display', 'block');
+		}
+
+	}
+
+	function openCompanyInfo() {
+		let companyInfo = $('#companyInfo');
+		if(companyInfo.css('display') === 'none') {
+			companyInfo.css('display', 'block');
+		} else {
+			companyInfo.css('display', 'none');
+		}
+	}
+}
